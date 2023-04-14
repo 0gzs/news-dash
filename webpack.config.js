@@ -1,4 +1,5 @@
 const path = require("path")
+const Dotenv = require("dotenv-webpack")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const SRC_DIR = path.join(__dirname, './client/src/')
@@ -62,6 +63,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: `${SRC_DIR}/index.html`,
       minify: {
