@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { checkImage } from '../functions.js'
 import './slider.scss'
 
 const Slider = ({ articles }) => {
@@ -11,7 +12,21 @@ const Slider = ({ articles }) => {
     }
 
     const next = () => {
-      setCurrent(current => current == articles.length - 1 ? 0 : current + 1)
+      if (articles.length == 0) return
+
+      const nextIndex = current == articles.length - 1 ? 0 : current + 1   
+      const isImageValid = checkImage(articles[nextIndex].urlToImage)
+
+      if (!isImageValid) {
+        let nextNum
+
+        if (current == articles.length - 1) nextNum = 0
+        else nextNum = current + 1
+
+        setCurrent(nextNum)
+        return next()
+      }
+      setCurrent(nextIndex)
     }
 
     timeoutIdRef.current = setTimeout(next, 2500)
@@ -19,7 +34,7 @@ const Slider = ({ articles }) => {
     return () => {
       clearTimeout(timeoutIdRef.current)
     }
-  }, [current])
+  }, [current, articles])
 
   if (!articles.length) return null
 

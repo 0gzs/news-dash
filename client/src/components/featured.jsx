@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './featured.scss'
 
 const Featured = ({ article }) => {
-
-  useEffect(() => {
-    console.log(article)
-  }, [article])
 
   return (
     <div className='featured-container'>

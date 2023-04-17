@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     if (articles.length) {
-      setFeaturedArticle(articles[Math.floor(Math.random() * articles.length)])
+      setFeaturedArticle(articles[articles.length - 1])
       setSliderArticles(articles.slice(0, 5))
       setColumnArticles(articles.slice(5, 10))
     }
